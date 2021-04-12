@@ -1,0 +1,210 @@
+
+html {
+  scroll-behavior: smooth;
+
+}
+body {
+    margin: 0;
+    color: #212529 !important; 
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+ overflow-x: hidden;
+
+}
+
+
+
+.submit_color{background: skyblue !important;
+border: none;
+padding: 5px 20px;
+border-radius: 10px;}
+a {text-decoration: none;
+color: #222222;}
+a:hover {text-decoration: none;
+color: #222222;}
+
+.top {
+    background-color: #045de9;
+    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+    padding-top: 60px;
+    padding-bottom: 80px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #FFF;
+    font-weight: bold;
+}
+  
+  .button-btn {
+ font-family: "Jost", sans-serif;
+font-weight: 500;
+font-size: 13px;
+letter-spacing: 1px;
+display: inline-block;
+padding: 5px 8px;
+border-radius: 10px;
+transition: 0.5s;
+margin: 10px;
+box-shadow: -5px 1px 0 rgba(5, 20, 10, 0.1);
+color: black;
+background-image: linear-gradient(315deg, #fbb034 0%, #ffdd00 74%);
+outline: none;
+width: 160px;
+text-align: center;
+}
+  .button-btn:hover {
+   background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+   box-shadow: -6px 5px 0 rgba(5, 20, 10, 0.1);
+    outline: none;
+    color: white;
+  
+  }
+
+a.move-top span {
+    color: #000;
+    font-size: 26px;
+    line-height: 30px;
+    display: inline-block !important;
+}
+a.move-top {
+    position: fixed;
+    bottom: 3%;
+    right: 2%;
+    z-index: 0;
+    background: royalblue;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+a.move-top:hover {background: yellow !important;}
+
+ 
+.navbar-toggler:hover{outline: none;}  
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 43px;
+    padding: 10px 18px;
+    font-size: 15px;
+    line-height: 1.42857143;
+    color: #333333;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+  }
+.panel-success {
+   
+    background-color:#4e9f15; 
+    padding-top: 10px;
+padding-bottom: 10px;
+padding-left: 10px;
+color: white;
+}
+.panel-border{
+	border: #4e9f15 2px solid;
+padding: 30px;
+}
+
+
+
+
+
+
+
+
+
+ #wrapper {
+    overflow-x: hidden;
+ }
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+  background-color: lightskyblue;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+#menu-toggle{outline: none;
+font-size: 40px; border: none; background-color: transparent; color: cornflowerblue;
+box-shadow: -5px 1px 0 rgba(5, 20, 10, 0.1);}
+#menu-toggle:hover{outline: none;
+color: green !important;
+transition: all .2s ease-out;
+
+}
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    width: 100%;
+    background-color: #007bff;
+    border: 1px solid white;
+padding: 20px}
+
+.list-group-item:hover{background-color: lightskyblue !important;
+padding-left: 50px; }
+
+fieldset.scheduler-border {
+  border: 1px groove #ddd !important;
+  padding: 0 1.4em 1.4em 1.4em !important;
+  margin: 0 0 1.5em 0 !important;
+  -webkit-box-shadow:  0px 0px 0px 0px #000;
+          box-shadow:  0px 0px 0px 0px #000;
+}
+
+
+legend.scheduler-border {
+  width:inherit; /* Or auto */
+  padding:0 10px; /* To give a bit of padding on the left and right */
+  border-bottom:none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+
+th {
+  background-color: #4287f5;
+  color: white !important;
+}
+
+th,
+td {
+  width: auto;
+ 
+
+  padding: 5px;
+}
