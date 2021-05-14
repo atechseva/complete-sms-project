@@ -1,0 +1,9 @@
+In EDIT STUDENT.PHP
+
+1. PASSWORD PROBLEM
+
+how to show decrypt password to student
+when password is not changed it again encrypted the password.
+
+2. image not changed
+

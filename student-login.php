@@ -1,6 +1,7 @@
 <?php
   session_start();
   include("db.php");
+  error_reporting(0);
   if (isset($_POST['submit'])) {
       $errorMsg = "";
       $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -65,6 +66,7 @@
             <div class="form-group">
               <label class="control-label" for="password">Password</label>
               <input type="password" class="form-control" name="password" id="" placeholder="Enter Password">
+            
               <?php
             if (isset($errorMsg)) {
                 echo "<div class='alert alert-danger alert-dismissible'>

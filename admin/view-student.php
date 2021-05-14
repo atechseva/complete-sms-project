@@ -28,7 +28,7 @@ $no_of_students=mysqli_fetch_array(mysqli_query($conn,"SELECT COUNT(*) FROM `stu
   </script>
   <style>
     .dataTables_filter {
-      right: : 0 !important;
+      right: 0 !important;
       padding: 10px;
     }
   </style>
