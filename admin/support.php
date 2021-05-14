@@ -41,7 +41,7 @@ $no_of_students=mysqli_fetch_array(mysqli_query($conn,"SELECT COUNT(*) FROM `stu
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Dashboard</h1>
+          <h1 class="m-0">Support</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -56,78 +56,41 @@ $no_of_students=mysqli_fetch_array(mysqli_query($conn,"SELECT COUNT(*) FROM `stu
 
 
       <div class="container">
-        <?php
- echo '<p style="font-weight: bold;" class="pt-2">Number of Students : '.$no_of_students[0].'</p>';
- ?>
+   
         <table class="table table-bordered table-responsive animate__animated animate__fadeIn" align="center"
           id="search">
           <thead>
-            <th>Roll No.</th>
-            <th>Name</th>
-            <th>Father Name</th>
-            <th>Mother name</th>
-            <th>Cource</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>DOB</th>
-            <th>GENDER</th>
-            <th>Image</th>
-            <th>Address</th>
-            <th>Operations</th>
+            <th>Support Id</th>
+            <th>Query</th>
+            <th>Student Email</th>
+
+            <th>Action</th>
+            
           </thead>
           <?php
-  $query="select * from studentregister";
+  $query="select * from support";
   $sel=mysqli_query($conn,$query);
   while($row=mysqli_fetch_array($sel))
   {
-    $std_reg_id=$row['std_reg_id'];
-    $name=$row['name'];
-    $fathername=$row['fathername'];
-    $mothername=$row['mothername'];
-    $cource=$row['cource'];
-    $email=$row['email'];
-    $phone=$row['phone'];
-    $dob=$row['dob'];
-    $gender=$row['gender'];
-    $img=$row['img'];
-    $address=$row['address'];
+    $support_id=$row['support_id'];
+    $support=$row['support'];
+    $student_email=$row['student_email'];
+   
 ?>
 
           <tr>
 
             <td>
-              <?php echo $std_reg_id; ?>
+              <?php echo $support_id; ?>
             </td>
             <td>
-              <?php echo $name; ?>
+              <?php echo $support; ?>
             </td>
             <td>
-              <?php echo $fathername; ?>
+              <?php echo $student_email; ?>
             </td>
-            <td>
-              <?php echo $mothername; ?>
-            </td>
-            <td>
-              <?php echo $cource; ?>
-            </td>
-            <td>
-              <?php echo $email; ?>
-            </td>
-            <td>
-              <?php echo $phone; ?>
-            </td>
-            <td>
-              <?php echo $dob; ?>
-            </td>
-            <td>
-              <?php echo $gender; ?>
-            </td>
-
-            <td><img src="upload/<?php echo $img; ?>" width="100" height="100" /></td>
-            <td>
-              <?php echo $address; ?>
-            </td>
-            <td><a style="color: green" href="delete-student.php?dlt_stud=<?php echo $row["std_reg_id"]; ?>"><i
+           
+            <td><a style="color: green" href="delete-support.php?supportid=<?php echo $row['support_id']; ?>"><i
                   class="fas fa-trash-alt"></i></a>
             </td>
           </tr>

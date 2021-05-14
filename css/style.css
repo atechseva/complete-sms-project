@@ -32,6 +32,8 @@ input[type="button"],
 input[type="submit"],
 input[type="text"],
 input[type="email"],
+input[type="radio"],
+input[type="date"],
 input[type="search"] {
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
@@ -371,7 +373,7 @@ li > a:only-child:after { content: ''; }
 
 /*-- banner --*/
 .banner {
-    background: url(../images/banner.jpg)no-repeat center;
+    background: url(../images/1.png) no-repeat center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -424,7 +426,8 @@ h4.b-w3ltxt {
     color: #fff;
 }
 
-.form-style-w3ls input[type="text"], .form-style-w3ls input[type="email"], .form-style-w3ls input[type="password"],select {
+
+.form-style-w3ls input[type="text"], .form-style-w3ls input[type="email"], .form-style-w3ls input[type="date"], .form-style-w3ls input[type="password"],select {
     outline: none;
     font-size: 14px;
     border: none;
@@ -979,7 +982,7 @@ a.move-top span{
 		padding: 0vw 0vw 10vw 8vw;
 	} 
 	.banner {
-		background: url(../images/banner.jpg)no-repeat -130px 0px;
+		background: url(../images/1.jpg)no-repeat -130px 0px;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;

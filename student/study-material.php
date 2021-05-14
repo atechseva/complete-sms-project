@@ -44,7 +44,7 @@ if ((!isset($_SESSION['student_email'])) && (!isset($_SESSION['student_password'
      <th align="center">Download PDF</th>
 </thead>
     <?php
-    $query="select * from studymaterial WHERE cource = '$cource'";
+    $query="SELECT * FROM studymaterial WHERE cource = '$cource'";
     $sel=mysqli_query($conn,$query);
     while($row=mysqli_fetch_array($sel))
     {

@@ -2,63 +2,47 @@
 session_start();
 include("database/db.php");
 error_reporting(0);
-if (isset($_POST['signup'])) {
 
-	$errormsg = "";
-	$user_name    = mysqli_real_escape_string($conn, $_POST['user_name']);
-	$user_phone    = mysqli_real_escape_string($conn, $_POST['user_phone']);
-	$user_email    = mysqli_real_escape_string($conn, $_POST['user_email']);
-	$user_password = mysqli_real_escape_string($conn, $_POST['user_password']);
-	$user_repeat_password = mysqli_real_escape_string($conn, $_POST['user_repeat_password']);
-
-	$password = password_hash($user_password, PASSWORD_BCRYPT);
-	$cpassword = password_hash($user_repeat_password, PASSWORD_BCRYPT);
-
-
-	$sql = "SELECT * FROM user WHERE user_email = '$user_email'";
+if (isset($_REQUEST['register'])) {
+	$errorMsg = "";
+	$msg ="";
+	$student_name = $_REQUEST['student_name'];
+	$cource = $_REQUEST['cource'];
+	$student_password = $_REQUEST['student_password'];
+	$passwordlength = strlen($student_password);
+	$hpassword = password_hash($student_password, PASSWORD_BCRYPT);
+	$phone = $_REQUEST['phone'];
+	$dob = $_REQUEST['dob'];
+	$gender = $_REQUEST['gender'];
+	$student_email = mysqli_real_escape_string($conn, $_POST['student_email']);
+	$sql = "SELECT * FROM studentregister WHERE student_email = '$student_email'";
 	$execute = mysqli_query($conn, $sql);
 
-	if (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
-
-		$errormsg = '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-    </button>
-      <strong>Oops!</strong> Email in not valid try again
-    </div>';
+	if (!filter_var($student_email, FILTER_VALIDATE_EMAIL)) {
+		$errorMsg = "Email in not valid try again";
 	} else if ($execute->num_rows == 1) {
-
-		$errormsg = '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-    </button>
-      <strong>Oops!</strong> This Email is already exists
-    </div>';
-	} else if ($user_password != $user_repeat_password) {
-
-
-		$errormsg = '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-    </button>
-      <strong>Oops!</strong> "Passsword Do Not match Sign Up Again !
-    </div>';
+		$errorMsg = "This Email is already exists";
+	} else if ($passwordlength < 6) {
+		$errorMsg = "<br><redtext> Invalid password. Password must be at least 6 characters</redtext>";
 	} else {
-		$query = "INSERT INTO user(`user_name`,`user_phone`,`user_email`,`user_password`,`user_repeat_password`) 
-                  VALUES('$user_name','$user_phone','$user_email','$password','$cpassword')";
+		$query = "insert into studentregister(`student_name`,`cource`,`student_email`,`student_password`,`phone`,`dob`,`gender`) 
+        values('$student_name','$cource','$student_email','$hpassword','$phone','$dob','$gender')";
+
 		$result = mysqli_query($conn, $query);
 		if ($result == true) {
-
-			$errormsg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-      </button>
-        <strong>Success!</strong> "Account has been created successfully!
-      </div>';
+			
+			$msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+			</button>
+		<strong>Success!</strong> Account has been created successfully
+	  </div>';
+	  header('location:student-login.php');
 		} else {
-
-			$errormsg = '<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-      </button>
-        <strong>Opps!</strong> "You are not Registred..Please Try again
-      </div>';
+			$errorMsg  = "You are not Registred..Please Try again";
 		}
 	}
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,16 +58,18 @@ if (isset($_POST['signup'])) {
 <body>
 	<!-- header -->
 	<header>
-	<div class="top-head container">
-		<div class="ml-auto text-right right-p">
-			<ul>
-				<li class="mr-3">
-					<span class="fa fa-clock-o"></span> Mon-Sat : 9:00 to 17:00</li>
-				<li>
-					<span class="fa fa-envelope-open"></span> <a href="mailto:info@example.com">info@example.com</a> </li>
-			</ul>
+		<div class="top-head container">
+			<div class="ml-auto text-right right-p">
+				<ul>
+					<li class="mr-3">
+						<span class="fa fa-clock-o"></span> Mon-Sat : 9:00 to 17:00
+					</li>
+					<li>
+						<span class="fa fa-envelope-open"></span> <a href="mailto:info@example.com">info@example.com</a>
+					</li>
+				</ul>
+			</div>
 		</div>
-	</div>
 
 		<div class="container">
 			<!-- nav -->
@@ -94,10 +80,9 @@ if (isset($_POST['signup'])) {
 				<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
 				<input type="checkbox" id="drop" />
 				<ul class="menu ml-auto mt-1">
-					<li class="active"><a href="index.html">Home</a></li>
+				<li class="active"><a href="index.php">Home</a></li>
 					<li class=""><a href="#about">About</a></li>
-					<li class=""><a href="#services">Services</a></li>
-					<li class=""><a href="#stats">Stats</a></li>
+					<li class=""><a href="#services">Courses</a></li>
 					<li class=""><a href="#testi">Testimonials</a></li>
 					<li class=""><a href="student-login.php">Login/Register</a></li>
 
@@ -133,7 +118,7 @@ if (isset($_POST['signup'])) {
 								<li>
 									<div class="container-fluid">
 										<div class="w3ls_banner_txt">
-										<h3 class="b-w3ltxt text-capitalize mt-md-4">Online Service Portal</h3>
+											<h3 class="b-w3ltxt text-capitalize mt-md-4">Online Service Portal</h3>
 											<h4 class="b-w3ltxt text-capitalize mt-md-2">What product do you have?</h4>
 											<p class="w3ls_pvt-title my-3">LED.</p>
 											<a href="#about" class="btn btn-banner my-3">Read More</a>
@@ -143,7 +128,7 @@ if (isset($_POST['signup'])) {
 								<li>
 									<div class="container-fluid">
 										<div class="w3ls_banner_txt">
-										<h3 class="b-w3ltxt text-capitalize mt-md-4">Online Service Portal</h3>
+											<h3 class="b-w3ltxt text-capitalize mt-md-4">Online Service Portal</h3>
 											<h4 class="b-w3ltxt text-capitalize mt-md-2">What product do you have?</h4>
 											<p class="w3ls_pvt-title my-3">Washing Machine</p>
 											<a href="#about" class="btn btn-banner my-3">Read More</a>
@@ -166,16 +151,47 @@ if (isset($_POST['signup'])) {
 							<div class="padding">
 								<!-- banner form -->
 								<?php echo $errormsg; ?>
+								<?php echo $msg; ?>
+								
 								<form action="" method="post" enctype="multipart/form-data">
 									<h5 class="mb-3">Register and Submitted Query</h5>
+									
 									<div class="form-style-w3ls">
-										<input placeholder="Full Name" name="user_name" type="text" required="">
-										<input placeholder="Contact Number" name="user_phone" type="text" required="">
-										<input placeholder="Your Email Id" name="user_email" type="email" required="">
-										<input placeholder="Your Password" name="user_password" type="password" required="">
-										<input placeholder="Repeat Password" name="user_repeat_password" type="password" required="">
+										<input placeholder="Full Name" name="student_name" type="text">
+										<input placeholder="Contact Number" name="phone" type="text">
+										<input placeholder="Your Email Id" name="student_email" type="email">
+										<input placeholder="Your Password" name="student_password" type="password">
+										<select name="cource" >
+											<option>Select Course</option>
+											<?php
+											$seclect = "select * from cource";
+											$sel = mysqli_query($conn, $seclect);
+											while ($row = mysqli_fetch_array($sel)) {
+												$cource_id = $row['cource_id'];
+												$cource = $row['cource'];
+											?>
 
-										<button type="submit" Class="btn" name="signup"> Submit</button>
+												<option value="<?php echo $cource; ?>">
+													<?php echo $cource; ?>
+												</option>
+											<?php
+											}
+											?>
+										</select>
+										
+
+										<div class="form-group">
+										
+											<input type="date" name="dob" class="form-control">
+										</div>
+										<p>Gender : <label class="radio-inline">
+												<input type="radio" name="gender" value="male" checked="checked"> Male
+											</label>
+											<label class="radio-inline">
+												<input type="radio" name="gender" value="female"> Female
+											</label>
+										</p>
+										<button type="submit" class="btn" name="register"> Submit</button>
 
 										<span>By registering, you agree to our <a href="#">Terms & Conditions.</a></span>
 									</div>
@@ -190,21 +206,6 @@ if (isset($_POST['signup'])) {
 		</div>
 	</div>
 	<!-- //banner -->
-
-
-
-
-
-<section class="mt-5 text-justify">
-	<div class="container">
-		<p>
-		Are you looking for a Service Center in your area for phone repair or any other customer needs? We have over 500 authorized service centers across India. On the support website, click on Service Center and find the closest support center in the list by selecting your city and town below. All the fully-trained OPPO staff are at your service. Our technical team is here to help you with any issues or questions regarding your mobile device. Visit your nearest OPPO service center directly or book an appointment to see how you can get face-to-face support and customer-focused solution. For further device assistance or repair status check, you can make a phone call first for more details.
-		</p>
-	</div>
-</section>
-
-
-
 
 
 
@@ -363,7 +364,7 @@ if (isset($_POST['signup'])) {
 	</section>
 	<!-- //services -->
 
-	
+
 
 	<!-- other services -->
 	<section class="other_services py-5" id="why">
@@ -402,9 +403,9 @@ if (isset($_POST['signup'])) {
 	</section>
 	<!-- //other services -->
 
-	
 
-	
+
+
 
 	<?php include("include/footer.php"); ?>
 </body>

@@ -289,6 +289,18 @@
             </p>
           </a>
         </li>
+        <li class="<?php echo (basename($_SERVER['PHP_SELF']) == "support.php") ? "active" : "" ?> nav-item">
+          <a href="support.php" class="nav-link">
+            <i class="nav-icon fas fa-question-circle"></i>
+            <p>
+              Support
+              <?php $no_of_support = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `support`")); ?>
+              <span class="badge badge-info right"> <?php
+                                                    echo $no_of_support[0];
+                                                    ?></span>
+            </p>
+          </a>
+        </li>
         <li class="<?php echo (basename($_SERVER['PHP_SELF']) == "branch.php") ? "active" : "" ?> nav-item">
           <a href="branch.php" class="nav-link">
             <i class="nav-icon fas fa-code-branch"></i>

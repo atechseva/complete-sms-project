@@ -50,14 +50,14 @@ header('Location: student-login.php');
           <!-- small box -->
           <div class="small-box bg-info">
             <div class="inner">
-              <h3><?php echo $no_of_cource[0]; ?></h3>
+              <h3></h3>
 
-              <p>Cource</p>
+              <p>Profile</p>
             </div>
             <div class="icon">
               <i class="fas fa-graduation-cap"></i>
             </div>
-            <a href="cource.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="profile.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -65,14 +65,14 @@ header('Location: student-login.php');
           <!-- small box -->
           <div class="small-box bg-success">
             <div class="inner">
-              <h3><?php echo $no_of_students[0]; ?></h3>
+              <h3></h3>
 
-              <p>Students</p>
+              <p>Study Material</p>
             </div>
             <div class="icon">
               <i class="fas fa-user"></i>
             </div>
-            <a href="students.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="study-material.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -80,7 +80,7 @@ header('Location: student-login.php');
           <!-- small box -->
           <div class="small-box bg-warning">
             <div class="inner">
-            <h3><?php echo $no_of_notice[0]; ?></h3>
+            <h3></h3>
 
               <p>Notice</p>
             </div>
@@ -96,16 +96,17 @@ header('Location: student-login.php');
           <!-- small box -->
           <div class="small-box bg-danger">
             <div class="inner">
-              <h3><?php echo $no_of_sm[0]; ?></h3>
+              <h3></h3>
 
-              <p>Study Material</p>
+              <p>Support</p>
             </div>
             <div class="icon">
               <i class="fas fa-book"></i>
             </div>
-            <a href="study-material.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="support.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
+        
         <!-- ./col -->
       </div>
 

@@ -84,13 +84,11 @@ if ($result->num_rows == 1) {
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="form-group">
 
-                    <input type="hidden" name="student_email" value="<?php if (isset($student_email)) {
-                                                                            echo $student_email;
-                                                                        }  ?>" class="form-control" readonly>
+                    <input type="hidden" name="student_email" value="<?php echo $_SESSION['student_email'] ?>" class="form-control" readonly>
                 </div>
                 <div class="form-group">
                    
-                    <input type="text" name="support" placeholder="write your support here..." class="form-control">
+                    <input type="text" name="support" placeholder="write your query here..." class="form-control">
                 </div>
 
 

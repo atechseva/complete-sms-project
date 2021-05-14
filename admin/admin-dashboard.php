@@ -8,6 +8,7 @@ if((!isset($_SESSION['admin_email'])) && (!isset($_SESSION['admin_password']))){
   $no_of_students = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `studentregister`"));
   $no_of_cource = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `cource`"));
   $no_of_sm = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `studymaterial`"));
+  $no_of_support = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `support`"));
 
   $no_of_notice = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `notice`"));
 
@@ -113,6 +114,22 @@ if((!isset($_SESSION['admin_email'])) && (!isset($_SESSION['admin_password']))){
               <a href="study-material.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box" style="background-color: #d238e4;
+    color: white;">
+              <div class="inner">
+                <h3><?php echo $no_of_support[0]; ?></h3>
+
+                <p>Support</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-question-circle"></i>
+              </div>
+              <a href="study-material.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          
           <!-- ./col -->
         </div>
 

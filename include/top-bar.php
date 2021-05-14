@@ -18,10 +18,9 @@
 				<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
 				<input type="checkbox" id="drop" />
 				<ul class="menu ml-auto mt-1">
-					<li class="active"><a href="index.html">Home</a></li>
+					<li class="active"><a href="index.php">Home</a></li>
 					<li class=""><a href="#about">About</a></li>
-					<li class=""><a href="#services">Services</a></li>
-					<li class=""><a href="#stats">Stats</a></li>
+					<li class=""><a href="#services">Courses</a></li>
 					<li class=""><a href="#testi">Testimonials</a></li>
 					<li class=""><a href="student-login.php">Login/Register</a></li>
 

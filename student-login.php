@@ -35,6 +35,7 @@ if (isset($_POST['submit'])) {
 <?php
 if (isset($_REQUEST['register'])) {
   $errorMsg = "";
+  $msg ="";
   $student_name = $_REQUEST['student_name'];
   $cource = $_REQUEST['cource'];
   $student_password = $_REQUEST['student_password'];
@@ -56,10 +57,13 @@ if (isset($_REQUEST['register'])) {
   } else {
     $query = "insert into studentregister(`student_name`,`cource`,`student_email`,`student_password`,`phone`,`dob`,`gender`) 
         values('$student_name','$cource','$student_email','$hpassword','$phone','$dob','$gender')";
-
+  
     $result = mysqli_query($conn, $query);
     if ($result == true) {
-      echo '<div class="alert alert-success">Account has been created successfully</div>';
+      $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+			</button>
+		<strong>Success!</strong> Account has been created successfully
+	  </div>';
     } else {
       $errorMsg  = "You are not Registred..Please Try again";
     }
@@ -110,6 +114,8 @@ if (isset($_REQUEST['register'])) {
       </div>
       <p style="text-align:center"> OR </p>
       <?php echo $errorMsg; ?>
+      <?php echo $msg; ?>
+
       <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="student_email" autofocus="">
       <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="student_password" required="">
 
