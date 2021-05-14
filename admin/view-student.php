@@ -1,9 +1,9 @@
 <?php 
-include("db.php");
+include("../database/db.php");
 error_reporting(0);
 ob_start();
 session_start();
-if((!isset($_SESSION['email'])) && (!isset($_SESSION['password']))){
+if((!isset($_SESSION['admin_email'])) && (!isset($_SESSION['admin_password']))){
 header('Location: admin-login.php');
 }
 $no_of_students=mysqli_fetch_array(mysqli_query($conn,"SELECT COUNT(*) FROM `studentregister`"));
@@ -15,10 +15,6 @@ $no_of_students=mysqli_fetch_array(mysqli_query($conn,"SELECT COUNT(*) FROM `stu
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>View Student | Admin</title>
-  <?php include('includes/links.php');?>
-  <link href="css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
-  <script type="text/javascript" charset="utf8"
-    src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
   <script type="text/javascript" charset="utf8"
     src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
   <script>
@@ -33,14 +29,31 @@ $no_of_students=mysqli_fetch_array(mysqli_query($conn,"SELECT COUNT(*) FROM `stu
     }
   </style>
 
-</head>
+<?php include('includes/header.php');  ?>
 
-<body>
-  <div class="wrapper">
-    <?php include('includes/sidebar.php');?>
-    <div class="main-panel">
+<?php include('includes/nav.php');  ?>
+<?php include('includes/sidebar.php');  ?>
 
-      <?php include('includes/nav.php');?>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Dashboard</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
 
       <div class="container">
         <?php
@@ -124,7 +137,7 @@ $no_of_students=mysqli_fetch_array(mysqli_query($conn,"SELECT COUNT(*) FROM `stu
         </table>
       </div>
 
-      <?php include('includes/footer.php');?>
-</body>
+     
 
-</html>
+
+    <?php include('includes/footer.php');  ?>

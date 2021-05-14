@@ -1,9 +1,9 @@
 <?php 
-include("db.php");
+include("../database/db.php");
 error_reporting(0);
 ob_start();
 session_start();
-if((!isset($_SESSION['email'])) && (!isset($_SESSION['password']))){
+if((!isset($_SESSION['student_email'])) && (!isset($_SESSION['student_password']))){
 header('Location: student-login.php');
 }
 ?>
@@ -14,87 +14,104 @@ header('Location: student-login.php');
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Dashboard</title>
-  <?php include('includes/links.php');?>
-  <link href="css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
-  <style type="text/css">
-    .dash [class^="icofont-"] {
-      font-size: 100px;
-      color: white;
-    }
+  <?php include('includes/header.php');  ?>
 
-    .dash a {
-      color: #292C2D;
-    }
+<?php include('includes/nav.php');  ?>
+<?php include('includes/sidebar.php');  ?>
 
-    .card {
-      border: 10px white solid !important;
-    }
-  </style>
-</head>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Dashboard</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
 
-<body>
-  <div class="wrapper">
-    <?php include('student_includes/sidebar.php');?>
-    <div class="main-panel">
 
-      <?php include('includes/nav.php');?>
-      <section class="dash container">
-        <div class="card-group">
 
-          <div class="card" style="background: greenyellow;">
-            <div class="card-body text-center">
-              <a href="student-profile.php">
-                <i class="icofont-eye-alt"></i>
-                <h4>Profile</h4>
-              </a>
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3><?php echo $no_of_cource[0]; ?></h3>
+
+              <p>Cource</p>
             </div>
-          </div>
-          <div class="card" style="background: aquamarine;">
-            <div class="card-body text-center">
-              <a href="edit-student-profile.php">
-                <i class="icofont-contact-add"></i>
-                <h4>Edit Profile</h4>
-              </a>
+            <div class="icon">
+              <i class="fas fa-graduation-cap"></i>
             </div>
-          </div>
-          <div class="card bg-primary">
-            <div class="card-body text-center">
-              <a href="" href="#" data-toggle="modal" data-target="#resultModal">
-                <i class="icofont-bullseye"></i>
-                <h4>Result</h4>
-              </a>
-            </div>
-          </div>
-          
-        </div>
-
-      </section>
-
-      <section class="dash container">
-        <div class="card-group">
-
-          
-
-          <div class="card" style="background: #bb3461;">
-            <div class="card-body text-center">
-              <a href="view-notice.php">
-                <i class="icofont-notification"></i>
-                <h4>Notice</h4>
-              </a>
-            </div>
-          </div>
-
-          <div class="card" style="background: coral;">
-            <div class="card-body text-center">
-              <a href="student-study-material.php">
-                <i class="icofont-book"></i>
-                <h4>Study Material</h4>
-              </a>
-            </div>
+            <a href="cource.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
-      </section>
-      <?php include('includes/footer.php');?>
-</body>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3><?php echo $no_of_students[0]; ?></h3>
 
-</html>
+              <p>Students</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <a href="students.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-warning">
+            <div class="inner">
+            <h3><?php echo $no_of_notice[0]; ?></h3>
+
+              <p>Notice</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-bell"></i>
+            </div>
+            <a href="notice.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3><?php echo $no_of_sm[0]; ?></h3>
+
+              <p>Study Material</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <a href="study-material.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+
+    </div></section>
+
+  
+
+
+  <?php include('includes/footer.php');  ?>

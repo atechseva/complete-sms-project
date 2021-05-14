@@ -1,11 +1,10 @@
-<?php 
-include("db.php");
+<?php
+  session_start();
+  include("../database/db.php");
 error_reporting(0);
-ob_start();
-session_start();
-if((!isset($_SESSION['email'])) && (!isset($_SESSION['password']))){
-header('Location: admin-login.php');
-}
+if((!isset($_SESSION['admin_email'])) && (!isset($_SESSION['admin_password']))){
+    header('Location: ../admin-login.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,14 +13,30 @@ header('Location: admin-login.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Branch | Admin</title>
     <?php include('includes/links.php');?>
-    <link href="css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
-</head>
-<body>
-    <div class="wrapper">
-         <?php include('includes/sidebar.php');?>
-        <div class="main-panel">
-        <?php include('includes/nav.php');?>
-<!--------Branch------>
+
+  <?php include('includes/header.php');  ?>
+
+  <?php include('includes/nav.php');  ?>
+  <?php include('includes/sidebar.php');  ?>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Branch</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Branch</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
 <?php
 if(isset($_REQUEST['addbranch']))
 {
@@ -38,46 +53,84 @@ else {
 }
 }
 ?>
-<?php
-if(isset($_POST['addnewbranch']))
-{
-?>
-<div class="container">
-<fieldset class="scheduler-border">
-    <legend class="scheduler-border">ADD BRANCH</legend>
-    <form action=""  method="post" style="padding-top: 30px; padding-bottom: 30px;" class="animate__animated animate__fadeIn">
-               
-               <table class="table-responsive">
-                 <tr>
-                 <td>Branch</td>
-                 <td><input type="text" value="" name="branch" placeholder="Branch Name"></td>
-                 </tr>
-                 <tr>
-                 <td>Address</td>
-                 <td><textarea name="address" id="" cols="20" rows="3" placeholder="Enter Branch Address here..."></textarea></td>
-                 </tr>
-                 <tr>
-                 <td>Detail</td>
-                 <td><textarea name="detail" id="" cols="20" rows="3" placeholder="Enter Details here..."></textarea></td>
-                 </tr>
-                 <tr>
-                 <td><input type="submit" value="Add branch" name="addbranch" class="btn btn-primary"></td>
-                 </tr>
-                 </table>
-                 </form>  
-</fieldset>
 
-  </div>
-<?php
-}
-?>
+
+
+
+    <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#myModal" style="float: right;">
+      Add New
+    </button>
+    <?php echo $msg; ?>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Add Branch</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form action="" method="post" style="padding-top: 30px; padding-bottom: 30px;" class="animate__animated animate__fadeIn">
+              
+              <div class="form-group">
+                <label>Branch</label>
+                <input type="text" name="branch" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Address</label>
+                <textarea name="address" class="form-control"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Detail</label>
+                <textarea name="detail" class="form-control"></textarea>
+              </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+
+            <button class="btn btn-primary" type="submit" name="addbranch"><i class="fas fa-user-plus"></i> Submit</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="container">              
 <table class="table table-bordered table-responsive animate__animated animate__fadeIn" align="center" id="example" cellpadding="20" align="center">
-
-    <h1>Branch
-     <?php echo'<form action="" method="post" align="right"><input type="submit"  value="Add branch" name="addnewbranch" style="font-size: 15px; margin-bottom: 30px;position: absolute;float: right; right: 20px;top: 110px;background: greenyellow;border: none;padding: 10px;">
-    </form> '; ?> 
-    </h1>
     <thead>
      <th>Branch ID</th>
      <th>Branch Name</th>
@@ -109,5 +162,3 @@ if(isset($_POST['addnewbranch']))
 </div> 
 <!-- -------------content end------------------ -->
 <?php include('includes/footer.php');?>
-</body>
-</html>

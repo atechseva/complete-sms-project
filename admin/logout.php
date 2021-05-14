@@ -1,8 +1,10 @@
 <?php
 session_start();
-include("db.php");
-unset($_SESSION['email']);
+include("../database/db.php");
+unset($_SESSION['admin_email']);
 session_destroy();
-header("location:index.php?logout successfully.");
-?> 
+header("location:../index.php?logout successfully.");
+
+?>
+
 

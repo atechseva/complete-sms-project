@@ -1,16 +1,20 @@
+
 <?php
-include("db.php");
+include("../database/db.php");
 error_reporting(0);
-$delete = "delete from branch WHERE branch_id='" . $_GET["branchid"] . "' ";
+$del=$_GET['branchid'];
+$delete = "delete from branch where branch_id = $del";
 $result = mysqli_query($conn,$delete);
 if($result) {
-	header('location:branch.php');
+header('location:branch.php');
 }
 else 
 {
-header('location:branch.php');
+echo "Error in deletion";
 }
 ?>
+
+
 
 
 
