@@ -111,7 +111,7 @@ if ((!isset($_SESSION['admin_email'])) && (!isset($_SESSION['admin_password'])))
 
 
     <div class="container">
-      <table class="table table-bordered table-responsive animate__animated animate__fadeIn" align="center" id="example" cellpadding="20" align="center">
+      <table class="table table-bordered animate__animated animate__fadeIn" align="center" id="example" cellpadding="20" align="center">
 
         <thead>
           <th>Cource ID</th>

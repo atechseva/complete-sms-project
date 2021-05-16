@@ -2,8 +2,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="index3.html" class="brand-link">
-    <img src="../img/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light">S.M.S.</span>
+    
+    <span class="brand-text font-weight-light" style="font-size: 18px;">Student Management System</span>
   </a>
 
   <!-- Sidebar -->
@@ -11,11 +11,28 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="../images/bb.jpg" class="img-circle elevation-2" alt="User Image">
+      
+        <?php
+        session_start();
+        include("../databse/db.php");
+
+        $sql = "SELECT img  FROM studentregister WHERE student_email='$_SESSION[student_email]'";
+        $sel = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_array($sel)) {
+          $img = $row['img'];
+
+        ?>
+
+        <?php if (isset($_SESSION['student_email'])) {
+
+            echo "<img style='width:40px;' class='img-circle elevation-2' src='../student/upload/" . $img . "'><span style='color:#b7b7b7!important; font-size: 12px;
+										text-transform: uppercase'> Welcome $_SESSION[student_email] </span>";
+          }
+        }
+        ?>
+
       </div>
-      <div class="info">
-        <a href="#" class="d-block"> <?php echo $_SESSION['student_email']; ?></a>
-      </div>
+
     </div>
 
     <!-- SidebarSearch Form -->
@@ -238,7 +255,7 @@
             <i class="nav-icon fas fa-user"></i>
             <p>
               Profile
-              
+
             </p>
           </a>
         </li>
@@ -246,7 +263,7 @@
           <a href="study-material.php" class="nav-link">
             <i class="nav-icon fas fa-search"></i>
             <p>
-            Study Material
+              Study Material
             </p>
           </a>
         </li>
@@ -255,17 +272,17 @@
             <i class="nav-icon fas fa-graduation-cap"></i>
             <p>
               Notice
-             
+
             </p>
           </a>
         </li>
-       
+
         <li class="<?php echo (basename($_SERVER['PHP_SELF']) == "support.php") ? "active" : "" ?> nav-item">
           <a href="support.php" class="nav-link">
             <i class="nav-icon fas fa-code-branch"></i>
             <p>
               Support
-             
+
             </p>
           </a>
         </li>

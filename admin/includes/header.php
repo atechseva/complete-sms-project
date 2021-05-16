@@ -13,6 +13,13 @@
 <link rel="stylesheet" href="../Icons//icofont/icofont.min.css">
 
 <link rel="stylesheet" href="css/style.css">
+ <!-- search Data -->
+ <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+  <script>
+    $(function() {
+      $("#search").dataTable();
+    })
+  </script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

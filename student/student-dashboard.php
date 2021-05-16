@@ -1,10 +1,9 @@
 <?php 
+session_start();
 include("../database/db.php");
 error_reporting(0);
-ob_start();
-session_start();
 if((!isset($_SESSION['student_email'])) && (!isset($_SESSION['student_password']))){
-header('Location: student-login.php');
+header('Location: ../student-login.php');
 }
 ?>
 <!DOCTYPE html>

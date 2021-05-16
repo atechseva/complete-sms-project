@@ -8,6 +8,7 @@ if ((!isset($_SESSION['admin_email'])) && (!isset($_SESSION['admin_password'])))
 ?>
 <?php
 if (isset($_REQUEST['addstudymaterial'])) {
+  $msg="";
   $cource = $_REQUEST['cource'];
   $description = $_REQUEST['description'];
   $pdf = $_FILES['pdf']['name'];
@@ -16,13 +17,17 @@ if (isset($_REQUEST['addstudymaterial'])) {
   $query = "insert into studymaterial(`cource`,`description`,`pdf`) values('$cource','$description','$pdf')";
   $result = mysqli_query($conn, $query);
   if ($result) {
-    echo '<div class="alert alert-success" style="margin-bottom: 0;"><img src="img/thankyou.gif" width="50" align="center">
-   <strong>Success!</strong> New Material Added
- </div>';
+  
+ $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Success!</strong> New Material Added
+              </div>';
   } else {
-    echo '<div class="alert alert-danger">
-  <strong>Failed!</strong> Something Went Wrong.
-</div>';
+  
+$msg = '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Failed!</strong> Something Went Wrong.
+              </div>';
   }
 }
 ?>

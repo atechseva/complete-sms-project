@@ -1,10 +1,9 @@
 <?php
+session_start();
 include("../database/db.php");
 error_reporting(0);
-ob_start();
-session_start();
-if ((!isset($_SESSION['student_email'])) && (!isset($_SESSION['student_password']))) {
-    header('Location: student-login.php');
+if((!isset($_SESSION['student_email'])) && (!isset($_SESSION['student_password']))){
+header('Location: ../student-login.php');
 }
 ?> 
 <!DOCTYPE html>
@@ -24,12 +23,12 @@ if ((!isset($_SESSION['student_email'])) && (!isset($_SESSION['student_password'
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Profile</h1>
+                    <h1 class="m-0">Study Material</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Profile</li>
+                        <li class="breadcrumb-item active">Study Material</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -44,7 +43,9 @@ if ((!isset($_SESSION['student_email'])) && (!isset($_SESSION['student_password'
      <th align="center">Download PDF</th>
 </thead>
     <?php
-    $query="SELECT * FROM studymaterial WHERE cource = '$cource'";
+    
+    $query="SELECT * FROM studymaterial JOIN studentregister ON studentregister.cource=studymaterial.cource";
+
     $sel=mysqli_query($conn,$query);
     while($row=mysqli_fetch_array($sel))
     {

@@ -8,7 +8,7 @@
         <a href="../index.php" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="logout.php" class="nav-link"><i class="fab fa-sign-out"></i> Logout</a>
+        <a href="../student/logout.php" class="nav-link"><i class="fab fa-sign-out"></i> Logout</a>
       </li>
     </ul>
 

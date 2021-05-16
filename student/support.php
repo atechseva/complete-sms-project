@@ -1,34 +1,22 @@
 <?php
+session_start();
 include("../database/db.php");
 error_reporting(0);
-ob_start();
-session_start();
 if ((!isset($_SESSION['student_email'])) && (!isset($_SESSION['student_password']))) {
-    header('Location: student-login.php');
+    header('Location: ../student-login.php');
 }
-
 if (isset($_REQUEST['submitsupport'])) {
     $msg = "";
 
     $student_email = $_REQUEST['student_email'];
     $support = $_REQUEST['support'];
-    $sql = "select * from support where (student_email='$student_email');";
-    $res = mysqli_query($conn, $sql);
-    if (mysqli_num_rows($res) > 0) {
-        $msg = '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-</button>
-        <strong>Great!</strong> support Already Exist.
-      </div>';
-    } else {
-
-
-        $query = "insert into support(`support`,`student_email`) 
+    $query = "insert into support(`support`,`student_email`) 
     values('$support','$student_email')";
         $result = mysqli_query($conn, $query);
         if ($result) {
             $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
       </button>
-        <strong>Success!</strong> support Added
+        <strong>Success!</strong> Our Team will reply you soon !
       </div>';
         } else {
             $msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -36,15 +24,9 @@ if (isset($_REQUEST['submitsupport'])) {
   <strong>Failed!</strong> Something Went Wrong.
 </div>';
         }
-    }
+    
 }
 
-$sql = "SELECT * FROM students WHERE student_email = '$_SESSION[student_email]'";
-$result = $conn->query($sql);
-if ($result->num_rows == 1) {
-    $row = $result->fetch_assoc();
-    $student_email = $row["student_email"];
-}
 
 ?>
 <!DOCTYPE html>
@@ -80,14 +62,14 @@ if ($result->num_rows == 1) {
 
         <?php echo $msg; ?>
 
-       <div class="container">
+        <div class="container">
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="form-group">
 
                     <input type="hidden" name="student_email" value="<?php echo $_SESSION['student_email'] ?>" class="form-control" readonly>
                 </div>
                 <div class="form-group">
-                   
+
                     <input type="text" name="support" placeholder="write your query here..." class="form-control">
                 </div>
 
@@ -95,43 +77,51 @@ if ($result->num_rows == 1) {
                 <input type="submit" value="Submit" name="submitsupport" class="btn btn-primary">
 
             </form>
-
-            <table class="table table-bordered  table-hover animate__animated animate__fadeIn mt-5">
-                <thead class="thead-light">
-                    <tr>
-                        <th>S.No</th>
-                        <th>Your support</th>
-                        <th>Action</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <?php
-
-                $query = "SELECT * FROM support WHERE student_email= '$student_email'";
-                $query_run = mysqli_query($conn, $query);
-                $i = 1;
-
-
-                while ($row = mysqli_fetch_assoc($query_run)) {
-
-                ?>
-
-                    <tr>
-                        <td><?php echo $i++; ?></td>
-                        <td><?php echo $row['support']; ?></td>
-                        <td>In Pending</td>
-
-
-
-                        <td>
-                            <button class="btn btn-outline-success" name=""><a href="edit_book.php?bn=<?php echo $row['book_no']; ?>">Edit</a></button>
-                            <button class="btn btn-outline-delete" name=""><a href="delete-support.php?supportid=<?php echo $row['support_id']; ?>">Delete</a></button>
-
-                        </td>
-                    </tr>
-                <?php } ?>
-            </table>
-
             </div>
 
-    <?php include('includes/footer.php');  ?>
+
+            <?php
+
+$query = "SELECT * FROM support_answer JOIN support ON support_answer.support_id = support.support_id ORDER BY support_answer.answer_id DESC ";
+$query_run = mysqli_query($conn, $query);
+$i = 1;
+
+
+while ($row = mysqli_fetch_assoc($query_run)) {
+
+?>
+<div class="container">
+    <table class="table table-bordered  table-hover animate__animated animate__fadeIn mt-5">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Date</th>
+                        <th>Your Query</th>
+
+                        <th>Answer</th>
+                        <th>Status</th>
+                       
+                      
+                    </tr>
+                </thead>
+    <tr>
+       <td><?php echo $row['date']; ?></td>
+       <td><?php echo $row['support']; ?></td>
+
+        <td><?php echo $row['answer']; ?></td>
+        <td class="text-success">Done</td>
+
+    </tr>
+    </table>
+</div>
+    <?php } ?>
+
+
+
+
+
+
+
+
+
+
+            <?php include('includes/footer.php');  ?>

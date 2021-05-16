@@ -145,6 +145,8 @@ if (isset($_REQUEST['add_notice'])) {
               $cource = $row['cource'];
               $notice_title = $row['notice_title'];
               $notice_description = $row['notice_description'];
+              $date = $row['date'];
+
             ?>
               <tr>
                 <td>
@@ -156,7 +158,7 @@ if (isset($_REQUEST['add_notice'])) {
                 <td>
                   <?php echo $notice_description; ?>
                 </td>
-                <td>current_timestamp()</td>
+                <td><?php  echo $row['date']; ?></td>
                 <td><a href="delete-notice.php?noticeid=<?php echo $id; ?>">Delete</a></td>
               </tr>
             <?php

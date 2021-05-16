@@ -1,37 +1,35 @@
 <?php
+session_start();
 include("../database/db.php");
 error_reporting(0);
-ob_start();
-session_start();
-if ((!isset($_SESSION['student_email'])) && (!isset($_SESSION['student_password']))) {
-    header('Location: student-login.php');
+if((!isset($_SESSION['student_email'])) && (!isset($_SESSION['student_password']))){
+header('Location: ../student-login.php');
 }
 
 if (isset($_REQUEST['submit'])) {
     $msg = "";
-    $name = $_REQUEST['name'];
+    $student_name = $_REQUEST['student_name'];
     $fathername = $_REQUEST['fathername'];
     $mothername = $_REQUEST['mothername'];
 
-    $img = $_FILES['img']['name'];
-    $email = $_REQUEST['email'];
-    $password = $_REQUEST['password'];
-    $hpassword = password_hash($password, PASSWORD_BCRYPT);
+ 
+    $student_password = $_REQUEST['student_password'];
+    $hpassword = password_hash($student_password, PASSWORD_BCRYPT);
     $phone = $_REQUEST['phone'];
     $dob = $_REQUEST['dob'];
     $gender = $_REQUEST['gender'];
     $address = $_REQUEST['address'];
+    
+    $img = $_FILES['img']['name'];
     copy($_FILES['img']['tmp_name'], $location);
     if ($img == "") {
-        $query = "UPDATE studentregister SET name='$name', fathername='$fathername', mothername='$mothername',email='$email', password='$hpassword', phone='$phone', dob='$dob', gender ='$gender', address='$address' WHERE  student_email='$_SESSION[student_email]'";
+        $query = "UPDATE studentregister SET student_name='$student_name', fathername='$fathername', mothername='$mothername', student_password='$hpassword', phone='$phone', dob='$dob', gender ='$gender', address='$address' WHERE  student_email='$_SESSION[student_email]'";
     }
 
-    if ($hpassword = $_SESSION['password'] or $password = $_SESSION['password']) {
-        $query = "UPDATE studentregister SET name='$name', fathername='$fathername', mothername='$mothername',email='$email', phone='$phone', dob='$dob', gender ='$gender', address='$address' WHERE  student_email='$_SESSION[student_email]'";
-    } else {
+    else {
         $location = "upload/" . $img;
         copy($_FILES['img']['tmp_name'], $location);
-        $query = "UPDATE studentregister SET name='$name', fathername='$fathername', mothername='$mothername', img='$img', email='$email', password='$hpassword', phone='$phone', dob='$dob' gender ='$gender', address='$address' WHERE  email='$_SESSION[email]'";
+        $query = "UPDATE studentregister SET student_name='$student_name', fathername='$fathername', mothername='$mothername', img='$img', student_password='$hpassword', phone='$phone', dob='$dob', gender ='$gender', address='$address' WHERE  student_email='$_SESSION[student_email]'";
     }
     $result = mysqli_query($conn, $query);
     if ($result) {
@@ -88,7 +86,7 @@ if (isset($_REQUEST['submit'])) {
                     ?>
                         <tr>
                             <td>Name:</td>
-                            <td><input type="text" name="name" value="<?php echo $data["student_name"]; ?>"></td>
+                            <td><input type="text" name="student_name" value="<?php echo $data["student_name"]; ?>"></td>
                             <td>Father's Name:</td>
                             <td><input type="text" name="fathername" value="<?php echo $data["fathername"]; ?>"></td>
                         </tr>
@@ -105,7 +103,7 @@ if (isset($_REQUEST['submit'])) {
                                 50%; height: 200px;">
                         </tr>
                         <td>Email:</td>
-                        <td><input type="email" name="email" value="<?php echo $data["student_email"]; ?>"></td>
+                        <td><input type="email" name="email" value="<?php echo $_SESSION["student_email"]; ?>" readonly></td>
                         </tr>
                         <tr>
                             <td>Password</td>
@@ -143,7 +141,7 @@ if (isset($_REQUEST['submit'])) {
     <?php
                     }
     ?>
-    <?php include('includes/footer.php'); ?>
+    
 
     <script>
         $(document).ready(function() {
