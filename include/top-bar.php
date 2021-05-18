@@ -3,9 +3,9 @@
 		<div class="ml-auto text-right right-p">
 			<ul>
 				<li class="mr-3">
-					<span class="fa fa-clock-o"></span> Mon-Sat : 9:00 to 17:00</li>
+					<span class="fa fa-clock-o"></span> Mon-Sat : 8:00 to 16:00</li>
 				<li>
-					<span class="fa fa-envelope-open"></span> <a href="mailto:info@example.com">info@example.com</a> </li>
+					<span class="fa fa-envelope-open"></span> <a href="mailto:info@example.com">atechseva@gmail.com</a> </li>
 			</ul>
 		</div>
 	</div>

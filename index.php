@@ -58,24 +58,22 @@ if (isset($_REQUEST['register'])) {
 <body>
 	<!-- header -->
 	<header>
-		<div class="top-head container">
-			<div class="ml-auto text-right right-p">
-				<ul>
-					<li class="mr-3">
-						<span class="fa fa-clock-o"></span> Mon-Sat : 9:00 to 17:00
-					</li>
-					<li>
-						<span class="fa fa-envelope-open"></span> <a href="mailto:info@example.com">info@example.com</a>
-					</li>
-				</ul>
-			</div>
+<div class="top-head container">
+		<div class="ml-auto text-right right-p">
+			<ul>
+				<li class="mr-3">
+					<span class="fa fa-clock-o"></span> Mon-Sat : 8:00 to 16:00</li>
+				<li>
+					<span class="fa fa-envelope-open"></span> <a href="mailto:info@example.com">atechseva@gmail.com</a> </li>
+			</ul>
 		</div>
+	</div>
 
 		<div class="container">
 			<!-- nav -->
 			<nav class="py-3 d-lg-flex">
 				<div id="logo">
-					<h1> <a href="index.html"><img src="images/s2.png" alt=""> Child Learn </a></h1>
+					<h1> <a href="index.html"><img src="images/s2.png" alt=""> Student Management </a></h1>
 				</div>
 				<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
 				<input type="checkbox" id="drop" />
@@ -108,9 +106,9 @@ if (isset($_REQUEST['register'])) {
 								<li>
 									<div class="container-fluid">
 										<div class="w3ls_banner_txt">
-											<h3 class="b-w3ltxt text-capitalize mt-md-4">Online Service Portal</h3>
-											<h4 class="b-w3ltxt text-capitalize mt-md-2">What product do you have?</h4>
-											<p class="w3ls_pvt-title my-3">Smart Phone</p>
+											<h3 class="b-w3ltxt text-capitalize mt-md-4">It’s not about perfect. It’s about effort.</h3>
+											
+										
 											<a href="#about" class="btn btn-banner my-3">Read More</a>
 										</div>
 									</div>
@@ -118,9 +116,9 @@ if (isset($_REQUEST['register'])) {
 								<li>
 									<div class="container-fluid">
 										<div class="w3ls_banner_txt">
-											<h3 class="b-w3ltxt text-capitalize mt-md-4">Online Service Portal</h3>
-											<h4 class="b-w3ltxt text-capitalize mt-md-2">What product do you have?</h4>
-											<p class="w3ls_pvt-title my-3">LED.</p>
+											<h3 class="b-w3ltxt text-capitalize mt-md-4">Excellence is not a skill. It is an attitude</h3>
+											
+											
 											<a href="#about" class="btn btn-banner my-3">Read More</a>
 										</div>
 									</div>
@@ -128,9 +126,8 @@ if (isset($_REQUEST['register'])) {
 								<li>
 									<div class="container-fluid">
 										<div class="w3ls_banner_txt">
-											<h3 class="b-w3ltxt text-capitalize mt-md-4">Online Service Portal</h3>
-											<h4 class="b-w3ltxt text-capitalize mt-md-2">What product do you have?</h4>
-											<p class="w3ls_pvt-title my-3">Washing Machine</p>
+											<h3 class="b-w3ltxt text-capitalize mt-md-4">Your time is limited, so don’t waste it living someone else’s life</h3>
+											
 											<a href="#about" class="btn btn-banner my-3">Read More</a>
 										</div>
 									</div>
@@ -154,7 +151,7 @@ if (isset($_REQUEST['register'])) {
 								<?php echo $msg; ?>
 								
 								<form action="" method="post" enctype="multipart/form-data">
-									<h5 class="mb-3">Register and Submitted Query</h5>
+									<h5 class="mb-3">Register Now</h5>
 									
 									<div class="form-style-w3ls">
 										<input placeholder="Full Name" name="student_name" type="text">
