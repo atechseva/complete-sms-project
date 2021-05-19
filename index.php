@@ -17,7 +17,6 @@ if (isset($_REQUEST['register'])) {
 	$student_email = mysqli_real_escape_string($conn, $_POST['student_email']);
 	$sql = "SELECT * FROM studentregister WHERE student_email = '$student_email'";
 	$execute = mysqli_query($conn, $sql);
-
 	if (!filter_var($student_email, FILTER_VALIDATE_EMAIL)) {
 		$errorMsg = "Email in not valid try again";
 	} else if ($execute->num_rows == 1) {
@@ -27,7 +26,6 @@ if (isset($_REQUEST['register'])) {
 	} else {
 		$query = "insert into studentregister(`student_name`,`cource`,`student_email`,`student_password`,`phone`,`dob`,`gender`) 
         values('$student_name','$cource','$student_email','$hpassword','$phone','$dob','$gender')";
-
 		$result = mysqli_query($conn, $query);
 		if ($result == true) {
 			
@@ -52,9 +50,7 @@ if (isset($_REQUEST['register'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>School 1</title>
 	<?php include('include/links.php') ?>
-
 </head>
-
 <body>
 	<!-- header -->
 	<header>
@@ -68,7 +64,6 @@ if (isset($_REQUEST['register'])) {
 			</ul>
 		</div>
 	</div>
-
 		<div class="container">
 			<!-- nav -->
 			<nav class="py-3 d-lg-flex">
@@ -175,9 +170,7 @@ if (isset($_REQUEST['register'])) {
 											}
 											?>
 										</select>
-										
-
-										<div class="form-group">
+																			<div class="form-group">
 										
 											<input type="date" name="dob" class="form-control">
 										</div>
@@ -193,8 +186,6 @@ if (isset($_REQUEST['register'])) {
 										<span>By registering, you agree to our <a href="#">Terms & Conditions.</a></span>
 									</div>
 								</form>
-
-								<!-- //banner form -->
 							</div>
 						</div>
 					</div>
@@ -202,14 +193,7 @@ if (isset($_REQUEST['register'])) {
 			</div>
 		</div>
 	</div>
-	<!-- //banner -->
-
-
-
-
-
-
-	<!-- what we Serve -->
+	
 	<section class="banner-bottom py-5" id="about">
 		<div class="container py-lg-5">
 			<h2 class="heading mb-sm-5 mb-4"> Build Your Career With Our Education System</h2>
@@ -266,9 +250,7 @@ if (isset($_REQUEST['register'])) {
 			</div>
 		</div>
 	</section>
-	<!-- //what we Serve -->
-
-	<!-- services -->
+	
 	<section class="services py-5" id="services">
 		<div class="container">
 			<h3 class="heading mb-5">Our Services</h3>
@@ -352,18 +334,14 @@ if (isset($_REQUEST['register'])) {
 					</div>
 				</div>
 			</div>
-			<!-- positioned image -->
+			
 			<div class="position-image">
 				<img src="images/services.png" alt="" class="img-fluid">
 			</div>
-			<!-- //positioned image -->
+			
 		</div>
 	</section>
-	<!-- //services -->
 
-
-
-	<!-- other services -->
 	<section class="other_services py-5" id="why">
 		<div class="container py-lg-5 py-3">
 			<h3 class="heading mb-sm-5 mb-4">Why Choose Us </h3>
@@ -398,12 +376,7 @@ if (isset($_REQUEST['register'])) {
 			</div>
 		</div>
 	</section>
-	<!-- //other services -->
-
-
-
-
-
+	
 	<?php include("include/footer.php"); ?>
 </body>
 

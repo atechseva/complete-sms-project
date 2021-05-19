@@ -8,7 +8,7 @@ if ((!isset($_SESSION['admin_email'])) && (!isset($_SESSION['admin_password'])))
 ?>
 <?php
 if (isset($_REQUEST['addstudymaterial'])) {
-  $msg="";
+  $msg = "";
   $cource = $_REQUEST['cource'];
   $description = $_REQUEST['description'];
   $pdf = $_FILES['pdf']['name'];
@@ -17,14 +17,14 @@ if (isset($_REQUEST['addstudymaterial'])) {
   $query = "insert into studymaterial(`cource`,`description`,`pdf`) values('$cource','$description','$pdf')";
   $result = mysqli_query($conn, $query);
   if ($result) {
-  
- $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+
+    $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
         </button>
         <strong>Success!</strong> New Material Added
               </div>';
   } else {
-  
-$msg = '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+
+    $msg = '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
         </button>
         <strong>Failed!</strong> Something Went Wrong.
               </div>';
@@ -63,15 +63,6 @@ $msg = '<div class="alert alert-warning alert-dismissible fade show" role="alert
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-
-
-
-
-
-
-
-
-
     <!-- Button to Open the Modal -->
     <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#myModal" style="float: right;">
       Add New

@@ -82,37 +82,20 @@ if ((!isset($_SESSION['admin_email'])) && (!isset($_SESSION['admin_password'])))
                 <label>Cource</label>
                 <input type="password" name="cource" class="form-control">
               </div>
-
-              
-
               </div>
-
           <!-- Modal footer -->
           <div class="modal-footer">
            
             <button class="btn btn-primary" type="submit" name="addcource"><i class="fas fa-user-plus"></i> Add Cource</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-
-
           </div>
           </form>
         </div>
       </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
     <div class="container">
       <table class="table table-bordered animate__animated animate__fadeIn" align="center" id="example" cellpadding="20" align="center">
-
         <thead>
           <th>Cource ID</th>
           <th>Cource Name</th>

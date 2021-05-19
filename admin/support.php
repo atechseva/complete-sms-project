@@ -61,9 +61,7 @@ $no_of_students = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `
           <th>Support Id</th>
           <th>Query</th>
           <th>Student Email</th>
-
           <th>Action</th>
-
         </thead>
         <?php
         $query = "select * from support";
@@ -74,9 +72,7 @@ $no_of_students = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `
           $student_email = $row['student_email'];
 
         ?>
-
           <tr>
-
             <td>
               <?php echo $support_id; ?>
             </td>
@@ -86,21 +82,14 @@ $no_of_students = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `
             <td>
               <?php echo $student_email; ?>
             </td>
-
             <td>
-
             <a class="btn btn-outline-success" href="support-answer.php?support_answer=<?php echo $row['support_id']; ?>">Answer</a>
 
               <a style="color: red" href="delete-support.php?supportid=<?php echo $row['support_id']; ?>"><i class="fas fa-trash-alt"></i></a>
             </td>
           </tr>
-
         <?php
         } ?>
       </table>
     </div>
-
-
-
-
     <?php include('includes/footer.php');  ?>

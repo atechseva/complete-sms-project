@@ -29,9 +29,7 @@ if (isset($_POST['submit'])) {
     $errorMsg = "Email and Password is required";
   }
 }
-
 ?>
-
 <?php
 if (isset($_REQUEST['register'])) {
   $errorMsg = "";
@@ -47,7 +45,6 @@ if (isset($_REQUEST['register'])) {
   $student_email = mysqli_real_escape_string($conn, $_POST['student_email']);
   $sql = "SELECT * FROM studentregister WHERE student_email = '$student_email'";
   $execute = mysqli_query($conn, $sql);
-
   if (!filter_var($student_email, FILTER_VALIDATE_EMAIL)) {
     $errorMsg = "Email in not valid try again";
   } else if ($execute->num_rows == 1) {
@@ -57,7 +54,6 @@ if (isset($_REQUEST['register'])) {
   } else {
     $query = "insert into studentregister(`student_name`,`cource`,`student_email`,`student_password`,`phone`,`dob`,`gender`) 
         values('$student_name','$cource','$student_email','$hpassword','$phone','$dob','$gender')";
-  
     $result = mysqli_query($conn, $query);
     if ($result == true) {
       $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -100,11 +96,6 @@ if (isset($_REQUEST['register'])) {
 
 <body>
   <?php include('include/top-bar.php'); ?>
-
-
-
-
-
   <div id="logreg-forms">
     <form class="form-signin" method="post">
       <h1 class="h3 mb-3 font-weight-normal"> Sign in</h1>
@@ -178,9 +169,6 @@ if (isset($_REQUEST['register'])) {
         </label>
         <input type="date" name="dob" class="form-control">
       </div>
-
-
-
       <button class="btn btn-primary btn-block" type="submit" name="register"><i class="fas fa-user-plus"></i> Sign Up</button>
       <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
     </form>
