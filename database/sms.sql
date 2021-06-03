@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 16, 2021 at 01:45 PM
+-- Generation Time: Jun 03, 2021 at 12:16 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `branch` (
   `detail` varchar(255) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`branch_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `branch`
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `cource` (
   `cource` varchar(100) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`cource_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cource`
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `notice` (
   `notice_description` varchar(255) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`notice_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `notice`
@@ -204,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `studentregister` (
   `address` varchar(255) DEFAULT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`std_reg_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `studentregister`
@@ -212,8 +212,7 @@ CREATE TABLE IF NOT EXISTS `studentregister` (
 
 INSERT INTO `studentregister` (`std_reg_id`, `student_name`, `fathername`, `mothername`, `cource`, `img`, `student_email`, `student_password`, `phone`, `dob`, `gender`, `address`, `date`) VALUES
 (15, 'akash kumar', '', '', 'M.A', 'images.png', 'demo@gmail.com', '$2y$10$lWrO5semP6ZHIuMJnG/.5eSLqnKJoDdEDgMv2W.nB4b2Fm/viRuPG', '07017742830', '2021-05-21', '', 'kaseru khera', '2021-05-16 11:40:10'),
-(16, 'sagar', '', '', 'B.sc', 'gy.png', 'sagar@gmail.com', '$2y$10$gKaec2yp1V.Y9/k7.rzgCe51rdr3UHutYfa9Z9.S0tXTjOJoMVNiu', '', '2021-05-14', '', '', '2021-05-16 11:53:51'),
-(17, 'mca', NULL, NULL, 'MCA', NULL, 'mca@gmail.com', '$2y$10$0Co15RfSO19JHWAd/.UOku795TTcjHEe4oYBqDkQsr6XERN3ym1q.', '', '2021-05-21', 'male', NULL, '2021-05-16 12:03:10');
+(16, 'sagar', '', '', 'B.sc', 'gy.png', 'sagar@gmail.com', '$2y$10$gKaec2yp1V.Y9/k7.rzgCe51rdr3UHutYfa9Z9.S0tXTjOJoMVNiu', '', '2021-05-14', '', '', '2021-05-16 11:53:51');
 
 -- --------------------------------------------------------
 
