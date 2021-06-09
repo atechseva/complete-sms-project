@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
 <?php
 if (isset($_REQUEST['register'])) {
   $errorMsg = "";
-  $msg ="";
+  $msg = "";
   $student_name = $_REQUEST['student_name'];
   $cource = $_REQUEST['cource'];
   $student_password = $_REQUEST['student_password'];
@@ -96,7 +96,12 @@ if (isset($_REQUEST['register'])) {
 
 <body>
   <?php include('include/top-bar.php'); ?>
-  <div id="logreg-forms">
+
+
+<div class="container">
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-6">  <div id="logreg-forms">
     <form class="form-signin" method="post">
       <h1 class="h3 mb-3 font-weight-normal"> Sign in</h1>
       <div class="social-login">
@@ -132,11 +137,11 @@ if (isset($_REQUEST['register'])) {
       </div>
 
       <p style="text-align:center">OR</p>
-<?php echo $errorMsg; ?>
+      <?php echo $errorMsg; ?>
       <input type="text" id="user-name" class="form-control" placeholder="Full name" name="student_name" autofocus="">
       <input type="email" id="user-email" class="form-control" placeholder="Email address" name="student_email" required autofocus="">
       <input type="password" id="user-pass" class="form-control" placeholder="Password" name="student_password" required autofocus="">
-     
+
       <select name="cource" class="form-control">
         <option>Select Course</option>
         <?php
@@ -175,7 +180,10 @@ if (isset($_REQUEST['register'])) {
     <br>
 
   </div>
-
+</div>
+<div class="col-md-3"></div>
+</div>
+</div>
 
 
   <?php include('include/footer.php'); ?>

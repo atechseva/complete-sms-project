@@ -12,19 +12,18 @@ if (isset($_REQUEST['submitsupport'])) {
     $support = $_REQUEST['support'];
     $query = "insert into support(`support`,`student_email`) 
     values('$support','$student_email')";
-        $result = mysqli_query($conn, $query);
-        if ($result) {
-            $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    $result = mysqli_query($conn, $query);
+    if ($result) {
+        $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
       </button>
         <strong>Success!</strong> Our Team will reply you soon !
       </div>';
-        } else {
-            $msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    } else {
+        $msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
       </button>
   <strong>Failed!</strong> Something Went Wrong.
 </div>';
-        }
-    
+    }
 }
 
 
@@ -35,7 +34,7 @@ if (isset($_REQUEST['submitsupport'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Support</title>
     <?php include('includes/header.php');  ?>
 
     <?php include('includes/nav.php');  ?>
@@ -77,51 +76,36 @@ if (isset($_REQUEST['submitsupport'])) {
                 <input type="submit" value="Submit" name="submitsupport" class="btn btn-primary">
 
             </form>
-            </div>
+        </div>
 
 
-            <?php
+        <?php
 
-$query = "SELECT * FROM support_answer JOIN support ON support_answer.support_id = support.support_id ORDER BY support_answer.answer_id DESC ";
-$query_run = mysqli_query($conn, $query);
-$i = 1;
+        $query = "SELECT * FROM support_answer JOIN support ON support_answer.support_id = support.support_id ORDER BY support_answer.answer_id DESC ";
+        $query_run = mysqli_query($conn, $query);
+        $i = 1;
+        while ($row = mysqli_fetch_assoc($query_run)) {
 
-
-while ($row = mysqli_fetch_assoc($query_run)) {
-
-?>
-<div class="container">
-    <table class="table table-bordered  table-hover animate__animated animate__fadeIn mt-5">
-                <thead class="thead-light">
+        ?>
+            <div class="container">
+                <table class="table table-bordered  table-hover animate__animated animate__fadeIn mt-5">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Date</th>
+                            <th>Your Query</th>
+                            <th>Answer</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Your Query</th>
-
-                        <th>Answer</th>
-                        <th>Status</th>
-                       
-                      
+                        <td><?php echo $row['date']; ?></td>
+                        <td><?php echo $row['support']; ?></td>
+                        <td><?php echo $row['answer']; ?></td>
+                        <td class="text-success">Done</td>
                     </tr>
-                </thead>
-    <tr>
-       <td><?php echo $row['date']; ?></td>
-       <td><?php echo $row['support']; ?></td>
-
-        <td><?php echo $row['answer']; ?></td>
-        <td class="text-success">Done</td>
-
-    </tr>
-    </table>
-</div>
-    <?php } ?>
+                </table>
+            </div>
+        <?php } ?>
 
 
-
-
-
-
-
-
-
-
-            <?php include('includes/footer.php');  ?>
+        <?php include('includes/footer.php');  ?>

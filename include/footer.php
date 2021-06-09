@@ -28,19 +28,19 @@
 			<div class="container py-md-3">
 				<div class="footer-grid_section text-center">
 					<div class="footer-title mb-3">
-						<a href="#"><img src="images/s2.png" alt=""> Child Learn</a>
+						<a href="#"><img src="images/s2.png" alt=""> S.M.S </a>
 					</div>
 					<div class="footer-text">
 						<p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ipnut libero malesuada feugiat.
 							Lorem ipsum dolor sit amet, consectetur elit.</p>
 					</div>
 					<ul class="social_section_1info">
-						<li class="mb-2 facebook"><a href="#"><span class="fa fa-facebook"></span></a></li>
-						<li class="mb-2 twitter"><a href="#"><span class="fa fa-twitter"></span></a></li>
-						<li class="google"><a href="#"><span class="fa fa-google-plus"></span></a></li>
-						<li class="linkedin"><a href="#"><span class="fa fa-linkedin"></span></a></li>
-						<li class="pinterest"><a href="#"><span class="fa fa-pinterest"></span></a></li>
-						<li class="vimeo"><a href="#"><span class="fa fa-vimeo"></span></a></li>
+						<li class="mb-2 facebook"><a href="#"><span class="fab fa-facebook"></span></a></li>
+						<li class="mb-2 twitter"><a href="#"><span class="fab fa-twitter"></span></a></li>
+						<li class="google"><a href="#"><span class="fab fa-google-plus"></span></a></li>
+						<li class="linkedin"><a href="#"><span class="fab fa-linkedin"></span></a></li>
+						<li class="pinterest"><a href="#"><span class="fab fa-pinterest"></span></a></li>
+						<li class="vimeo"><a href="#"><span class="fab fa-vimeo"></span></a></li>
 					</ul>
 				</div>
 			</div>

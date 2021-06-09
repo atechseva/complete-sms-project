@@ -13,7 +13,7 @@ if ((!isset($_SESSION['student_email'])) && (!isset($_SESSION['student_password'
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Notice</title>
     <?php include('includes/header.php');  ?>
 
     <?php include('includes/nav.php');  ?>
@@ -46,11 +46,9 @@ if ((!isset($_SESSION['student_email'])) && (!isset($_SESSION['student_password'
                         <th>Notice Title</th>
                         <th>Notice Description</th>
                         <th>Date</th>
-
-
                         <?php
-                        $query = "SELECT * FROM notice WHERE cource = '$cource'";
-
+                        $query = "SELECT * FROM notice JOIN studentregister ON studentregister.cource=notice.cource";
+                   
                         $sel = mysqli_query($conn, $query);
                         while ($row = mysqli_fetch_array($sel)) {
                             $id = $row['notice_id'];

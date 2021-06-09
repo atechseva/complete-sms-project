@@ -698,7 +698,10 @@ ul.social_section_1info {
     margin-top: 20px;
 }
 ul.social_section_1info li {
-    display: inline-block;
+	display: inline-block;
+	background: #f9f9f9;
+	border-radius: 5px;
+	margin: 5px;
 }
 
 ul.social_section_1info a {
@@ -715,9 +718,9 @@ ul.social_section_1info a {
 	-o-border-radius: 50%;
 }
 
-ul.social_section_1info a span.fa {
+ul.social_section_1info a span.fab {
     font-size: 13.5px;
-    color: #ccc;
+    color: rgb(245, 50, 50);
     line-height: 40px;
 }
 ul.links li {
@@ -1270,7 +1273,7 @@ a.move-top span{
  /*Login Registration form */
  
  #logreg-forms{
-    width:412px !important;
+    
     margin:10vh auto;
     background-color:white;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.40);
@@ -1280,7 +1283,7 @@ a.move-top span{
 }
 #logreg-forms form {
     width: 100%;
-    max-width: 410px;
+    
     padding: 15px;
     margin: auto;
 }
@@ -1326,9 +1329,9 @@ a.move-top span{
 }
 #logreg-forms button[type="submit"]{ margin-top:10px; }
 
-#logreg-forms .facebook-btn{  background-color:#3C589C; }
+#logreg-forms .facebook-btn{  background-color:#3C589C !important; }
 
-#logreg-forms .google-btn{ background-color: #DF4B3B; }
+#logreg-forms .google-btn{ background-color: #DF4B3B !important; }
 
 #logreg-forms .form-reset, #logreg-forms .form-signup{ display: none; }
 

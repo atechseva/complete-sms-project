@@ -13,7 +13,7 @@
 			<!-- nav -->
 			<nav class="py-3 d-lg-flex">
 				<div id="logo">
-					<h1> <a href="index.html"><img src="images/s2.png" alt=""> Child Learn </a></h1>
+					<h1> <a href="index.html"><img src="images/s2.png" alt=""> S.M.S </a></h1>
 				</div>
 				<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
 				<input type="checkbox" id="drop" />

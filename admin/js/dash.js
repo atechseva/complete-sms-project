@@ -1749,16 +1749,13 @@
       setTimeout(function () {
         $__default['default']('body.hold-transition').removeClass('hold-transition');
       }, 50);
-      setTimeout(function () {
-        var $preloader = $__default['default'](SELECTOR_PRELOADER);
-
-        if ($preloader) {
-          $preloader.css('height', 0);
-          setTimeout(function () {
-            $preloader.children().hide();
-          }, 200);
-        }
-      }, this._config.preloadDuration);
+      $("#preloader").animate({
+        'opacity': '0'
+      }, 600, function () {
+        setTimeout(function () {
+          $("#preloader").css("visibility", "hidden").fadeOut();
+        }, 300);
+      });
     };
 
     _proto._max = function _max(numbers) {

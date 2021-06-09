@@ -14,7 +14,7 @@ $no_of_students = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>View Student | Admin</title>
+  <title>Support Student | Admin</title>
   <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
   <script>
     $(function() {
@@ -56,7 +56,7 @@ $no_of_students = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `
 
     <div class="container">
 <?php echo $_SESSION['$msg'] ?>
-      <table class="table table-bordered animate__animated animate__fadeIn" align="center" id="search">
+      <table class="table table-bordered animate__animated animate__fadeIn" id="search">
         <thead>
           <th>Support Id</th>
           <th>Query</th>
@@ -64,7 +64,7 @@ $no_of_students = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `
           <th>Action</th>
         </thead>
         <?php
-        $query = "select * from support";
+        $query = "select * from support ORDER BY `support_id` DESC";
         $sel = mysqli_query($conn, $query);
         while ($row = mysqli_fetch_array($sel)) {
           $support_id = $row['support_id'];
