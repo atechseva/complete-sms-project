@@ -1,70 +1,177 @@
 <?php
 session_start();
-include("database/db.php");
 error_reporting(0);
-if (isset($_POST['submit'])) {
-  $errorMsg = "";
+
+include("database/db.php");
+if (isset($_POST['signin'])) {
+
+  $errormsg = "";
   $student_email = mysqli_real_escape_string($conn, $_POST['student_email']);
   $student_password = mysqli_real_escape_string($conn, $_POST['student_password']);
-  $student_name = mysqli_real_escape_string($conn, $_POST['student_name']);
 
   if (!empty($student_email) || !empty($student_password)) {
-    $query  = "SELECT * FROM studentregister WHERE student_email = '$student_email'";
+    $query  = "SELECT * FROM studentregister WHERE student_email = '$student_email' and status='active' ";
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) == 1) {
       while ($row = mysqli_fetch_assoc($result)) {
         if (password_verify($student_password, $row['student_password'])) {
-          $_SESSION['student_password'] = $row['student_password'];
-          $_SESSION['student_name'] = $row['student_name'];
           $_SESSION['student_email'] = $row['student_email'];
-          header("location:student/student-dashboard.php?login successful");
+          $_SESSION['student_password'] = $row['student_password'];
+          header("Location:student/student-dashboard.php");
         } else {
-          $errormsg = "Email or Password is invalid";
+
+          $errormsg = '<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+          </button>
+            <strong>Opps!</strong> Email or Password is invalid
+          </div>';
         }
       }
     } else {
-      $errorMsg = "No user found on this email";
+
+      $errormsg = '<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+      </button>
+        <strong>Opps!</strong> No user found on this email
+      </div>';
     }
   } else {
-    $errorMsg = "Email and Password is required";
+
+    $errormsg = '<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </button>
+      <strong>Opps!</strong> Email and Password is required
+    </div>';
   }
 }
+
 ?>
+
+
+
+
 <?php
-if (isset($_REQUEST['register'])) {
-  $errorMsg = "";
+session_start();
+
+if (isset($_POST['register'])) {
+
+  $errormsg = "";
   $msg = "";
-  $student_name = $_REQUEST['student_name'];
-  $cource = $_REQUEST['cource'];
-  $student_password = $_REQUEST['student_password'];
-  $passwordlength = strlen($student_password);
-  $hpassword = password_hash($student_password, PASSWORD_BCRYPT);
-  $phone = $_REQUEST['phone'];
-  $dob = $_REQUEST['dob'];
-  $gender = $_REQUEST['gender'];
+  $student_name = mysqli_real_escape_string($conn, $_POST['student_name']);
   $student_email = mysqli_real_escape_string($conn, $_POST['student_email']);
+  $student_password = mysqli_real_escape_string($conn, $_POST['student_password']);
+  $cource = mysqli_real_escape_string($conn, $_POST['cource']);
+  $gender = mysqli_real_escape_string($conn, $_POST['gender']);
+  $dob = mysqli_real_escape_string($conn, $_POST['dob']);
+  $password = password_hash($student_password, PASSWORD_BCRYPT);
+  $token = bin2hex(random_bytes(15));
   $sql = "SELECT * FROM studentregister WHERE student_email = '$student_email'";
   $execute = mysqli_query($conn, $sql);
+
   if (!filter_var($student_email, FILTER_VALIDATE_EMAIL)) {
-    $errorMsg = "Email in not valid try again";
+
+    $errormsg = '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </button>
+      <strong>Opps!</strong> Email in not valid try again
+    </div>';
+  } else if (strlen($student_password) < 6) {
+    $errormsg = '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </button>
+      <strong>Opps!</strong> Password should be six digits
+    </div>';
   } else if ($execute->num_rows == 1) {
-    $errorMsg = "This Email is already exists";
-  } else if ($passwordlength < 6) {
-    $errorMsg = "<br><redtext> Invalid password. Password must be at least 6 characters</redtext>";
+
+    $errormsg = '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </button>
+      <strong>Opps!</strong> This Email is already exists
+    </div>';
   } else {
-    $query = "insert into studentregister(`student_name`,`cource`,`student_email`,`student_password`,`phone`,`dob`,`gender`) 
-        values('$student_name','$cource','$student_email','$hpassword','$phone','$dob','$gender')";
+
+    $query = "INSERT INTO studentregister(`student_name`,`student_email`,`student_password`,`cource`,`gender`,`dob`,`token`,`status`) 
+                   VALUES('$student_name','$student_email','$password','$cource','$gender','$dob','$token','inactive')";
     $result = mysqli_query($conn, $query);
     if ($result == true) {
-      $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-			</button>
-		<strong>Success!</strong> Account has been created successfully
-	  </div>';
+      $subject = "Account Activation";
+      $body = "Hi , $student_email Click Here to Activate your Email
+      https://www.atechseva.com/demo-projects/sms/activate.php?token=$token";
+
+      $sender_email = "From: dashingsagar2@gmail.com";
+      $smsg="";
+      if (mail($student_email, $subject, $body, $sender_email)) {
+        $smsg="";
+        $smsg= '<div class="alert alert-primary alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+        </button>
+          <strong>Success!</strong> Check your E-mail to Activate your account. <span class="text-warning">If Email Not Found then check it in spam.</span>
+        </div>';
+      } else {
+
+        $errormsg = '<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+        </button>
+          <strong>Opps!</strong> Email Sending failed
+        </div>';
+      }
+      
     } else {
-      $errorMsg  = "You are not Registred..Please Try again";
+
+      $errormsg = '<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+      </button>
+        <strong>Opps!</strong> You are not Registred..Please Try again
+      </div>';
     }
   }
 }
+
+?>
+<!-- -----------------------recover email---------------------- -->
+<?php
+
+  error_reporting(0);
+  if (isset($_POST['recover_email'])) {
+      
+      $errormsg = "";
+       
+      $emailerr="";
+      $student_email = mysqli_real_escape_string($conn, $_POST['student_email']);
+      $token = mysqli_real_escape_string($conn, $_POST['token']);
+      
+      
+      $sql = "SELECT * FROM studentregister WHERE student_email = '$student_email' ";
+      
+       $query = mysqli_query($conn,$sql);
+       $emailcount = mysqli_num_rows($query);
+      if($emailcount)
+       {
+         $userdata = mysqli_fetch_array($query);
+         $token=$userdata['token'];
+           
+         $subject = "Password Reset | Atechseva";
+         $body = "Hi , $email Click Here to Reset your password  https://www.atechseva.com/demo-projects/sms/reset-pass.php?token=$token";
+        
+        $sender_email = "From: dashingsagar2@gmail.com"; 
+        $smsg="";
+        if(mail($student_email, $subject, $body, $sender_email))
+        {
+         
+            $smsg = '<div class="alert alert-primary alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+            </button>
+              Reset Link Has been Send to your '.$student_email.' <span class="text-warning">If Email Not Found then check it in spam.</span>
+            </div>';
+            
+        }
+        else{
+          
+          $emailerr = '<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+            </button>
+              <strong>Opps!</strong> Email Sending Failedtr
+            </div>';
+        }
+   
+       }
+       else{
+        
+        $emailerr = '<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+        </button>
+          <strong>Opps!</strong> No Email Found
+        </div>';
+    }
+  }
 
 ?>
 <!DOCTYPE html>
@@ -109,22 +216,25 @@ if (isset($_REQUEST['register'])) {
         <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span> </button>
       </div>
       <p style="text-align:center"> OR </p>
-      <?php echo $errorMsg; ?>
+      <?php echo $errormsg; ?>
       <?php echo $msg; ?>
+      <?php echo $smsg; ?>
+      <?php echo $_SESSION['msg']; ?>
+      <?php echo $emailerr;?>
 
       <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="student_email" autofocus="">
       <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="student_password" required="">
 
-      <button class="btn btn-success btn-block" type="submit" name="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+      <button class="btn btn-success btn-block" type="submit" name="signin"><i class="fas fa-sign-in-alt"></i> Sign in</button>
       <a href="#" id="forgot_pswd">Forgot password?</a>
       <hr>
       <!-- <p>Don't have an account!</p>  -->
       <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button>
     </form>
 
-    <form action="/reset/password/" class="form-reset">
-      <input type="email" id="resetEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-      <button class="btn btn-primary btn-block" type="submit">Reset Password</button>
+    <form action="" class="form-reset" method="POST">
+      <input type="email" id="resetEmail" class="form-control" placeholder="Email address" name="student_email" autofocus="">
+      <button class="btn btn-primary btn-block" type="submit" name="recover_email">Reset Password</button>
       <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Back</a>
     </form>
 
